@@ -142,6 +142,71 @@ transition: 0.5s;
   font-style: bold;
   font-weight: 600;
 }
+
+    .score1 {
+            text-align: left;
+            font-size: 20px;
+            font-style: bold;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+
+        }
+    
+
+    .slider {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            display: none;
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Optional styles for slide transition */
+        .slide-active {
+            display: block;
+            animation: slide 1s ease-in-out;
+        }
+
+        @keyframes slide {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            background: rgba(205, 200, 200, 0.768);
+            padding: 10px;
+        }
+
+        .arrow-prev {
+            left: 10px;
+        }
+
+        .arrow-next {
+            right: 10px;
+        }
+
+        .arrow:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+    
   </style>
 </head>
 <body>
@@ -172,28 +237,57 @@ transition: 0.5s;
     
     
   </nav>
-  <button id="darkbtn">Dark</button>
-  <style>
-    body{
-        color: black;
-        background-color: aliceblue;
+  
+<div class="score1">
+        <p>Click Next Arrow for more Cricket & Football matches > </p>
+    </div>
 
-    }
-    body.Dark{
-        color: white;
-        background-color: black;
-    }
-    darkbtn{
-      text-align: left;
-    }
-</style>
-<script>
-    var button=document.getElementById("darkbtn");
-    darkbtn.addEventListener("click",()=>{document.body.classList.toggle("Dark")})
-</script>
-  <div class="photo">
-    <a href="watchlive.html"><img src="OIF.jpeg" alt="Computer Man" style="width:100%;px;height:450px;"></a>
-   </div>
+    </style>
+    <script>
+        var button = document.getElementById("darkbtn");
+        darkbtn.addEventListener("click", () => { document.body.classList.toggle("Dark") })
+    </script>
+
+
+    <div class="slider">
+        <div class="slide slide-active">
+           <a href="watchlive.html"> <img src="kkrvspk.jpeg" alt="Slide 1"></a>
+        </div>
+        <div class="slide">
+            <a href="football.html"><img src="f.jpg" alt="Slide 2"></a>
+        </div>
+        <div class="slide">
+           <a href="watchlive.html"> <img src="OIP.jpeg" alt="Slide 3"></a>
+        </div>
+        <div class="arrow arrow-prev">&#10094;</div>
+        <div class="arrow arrow-next">&#10095;</div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const slides = document.querySelectorAll(".slide");
+            const prevBtn = document.querySelector(".arrow-prev");
+            const nextBtn = document.querySelector(".arrow-next");
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove("slide-active"));
+                slides[index].classList.add("slide-active");
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            prevBtn.addEventListener("click", prevSlide);
+            nextBtn.addEventListener("click", nextSlide);
+        });
+    </script>
 <div class="score">
   <p>Scorecard</p>
 </div>
